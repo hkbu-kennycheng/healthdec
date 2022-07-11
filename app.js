@@ -7,8 +7,8 @@ const port = process.env.PORT || 5000;
 app.use(express.static('assets'));
 
 async function newBrowserTab(url) {
-  //const browser = await puppeteer.launch({headless:true});
-  const browser = await puppeteer.launch({headless:true, executablePath:'/usr/bin/chromium'});
+  const browser = await puppeteer.launch({args:['--no-sandbox']}); // launch option for heroku
+//  const browser = await puppeteer.launch({headless:true, executablePath:'/usr/bin/chromium'});
   const page = await browser.newPage();
   await page.goto(url, {waitUnit: 'networkidle0'});
   return page;
