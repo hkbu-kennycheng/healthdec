@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const puppeteer = require('puppeteer');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(cors());
 app.use(express.static('assets'));
 
 async function newBrowserTab(url) {
