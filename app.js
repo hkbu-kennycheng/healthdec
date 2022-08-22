@@ -17,10 +17,14 @@ async function newBrowserTab(url) {
 }
 
 async function healthdec(page) {
-  let selectors = ['#health_response_close_contact_discharge_not_fulfil_no',
+  const radioSelector = `input[type="radio"][value="N"]`;
+  await page.waitForSelector(radioSelector, {visible: true});
+  await page.$$eval(radioSelector, node => node.click());
+
+  let selectors = [/*'#health_response_close_contact_discharge_not_fulfil_no',
                    '#health_response_infected_discharge_not_fulfil_no',
                    '#health_response_close_contact_to_quarantine_no',
-                   '#health_response_symptoms_no',
+                   '#health_response_symptoms_no',*/
                    '#btn_submit_health_response',
                    '#btn_confirm_health_response'];
   for (let selector of selectors) {
