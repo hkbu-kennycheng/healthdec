@@ -19,7 +19,7 @@ async function newBrowserTab(url) {
 async function healthdec(page) {
   const radioSelector = `input[type="radio"][value="N"]`;
   await page.waitForSelector(radioSelector, {visible: true});
-  await page.$$eval(radioSelector, node => node.click());
+  await page.$$eval(radioSelector, nodes => nodes.forEach(node => node.click()));
 
   let selectors = [/*'#health_response_close_contact_discharge_not_fulfil_no',
                    '#health_response_infected_discharge_not_fulfil_no',
